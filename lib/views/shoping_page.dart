@@ -80,15 +80,11 @@ class ShoppingPage extends StatelessWidget {
                                       style: TextStyle(fontSize: 24)),
                                 ],
                               ),
-                              RaisedButton(
+                              ElevatedButton(
                                 onPressed: () {
-                                  // Get.snackbar(
-                                  //     "cek your cart", " is alredy added");
                                   cartController
                                       .addToCart(controller.products[index]);
                                 },
-                                color: Colors.blue,
-                                textColor: Colors.white,
                                 child: Text('Add to Cart'),
                               ),
                               Obx(() => IconButton(
@@ -111,51 +107,9 @@ class ShoppingPage extends StatelessWidget {
                 },
               ),
             ),
-            GetX<CartController>(builder: (controller) {
-              return Column(
-                children: controller.cartItems
-                    .map((element) => Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(element.product.productName),
-                            GetBuilder<CartController>(builder: (controller) {
-                              return Container(
-                                  height: 30,
-                                  color: Colors.amber,
-                                  child: Text(element.qty.toString()));
-                            }),
-                            ElevatedButton(
-                              onPressed: () {
-                                controller.increasQty(element);
-                              },
-                              child: Text('add'),
-                            )
-                          ],
-                        ))
-                    .toList(),
-              );
-            }),
-            SizedBox(height: 30),
-            GetBuilder<CartController>(builder: (controller) {
-              return Text('${controller.count2}');
-            })
           ],
         ),
       ),
-      // floatingActionButton: FloatingActionButton.extended(
-      //   onPressed: () {},
-      //   backgroundColor: Colors.amber,
-      //   icon: Icon(
-      //     Icons.add_shopping_cart_rounded,
-      //     color: Colors.black,
-      //   ),
-      //   label: GetX<CartController>(builder: (controller) {
-      //     return Text(
-      //       controller.count.toString(),
-      //       style: TextStyle(color: Colors.black, fontSize: 24),
-      //     );
-      //   }),
-      // ),
     );
   }
 }

@@ -68,8 +68,6 @@ class CartPage extends StatelessWidget {
                             ),
                             GestureDetector(
                               onTap: () {
-                                // cartController.increment();
-                                // print(controller.count2);
                                 cartController
                                     .increasQty(controller.cartItems[index]);
                               },
@@ -91,13 +89,17 @@ class CartPage extends StatelessWidget {
                   });
             }),
             Align(
-                alignment: Alignment.bottomCenter,
-                child: Obx(() => Text(cartController.totalPrice.toString()))
-                //  GetBuilder<CartController>(builder: (controller) {
-                //   return Text('${controller.totalPrice}');
-                // }
-
-                ),
+                alignment: Alignment.center,
+                child:
+                    // Obx(() => Text(cartController.totalPrice.toString()))
+                    GetBuilder<CartController>(builder: (controller) {
+                  return (controller.count2 == 0)
+                      ? Text("nothing")
+                      : Text(
+                          'Total : Rp ${controller.count2}',
+                          style: TextStyle(fontSize: 30),
+                        );
+                })),
           ],
         ));
   }

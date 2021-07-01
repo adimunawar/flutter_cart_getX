@@ -31,6 +31,8 @@ class CartController extends GetxController {
           product: product,
           qty: 1,
         ));
+        getTotalsMount();
+        update();
         Get.snackbar("berhasil", "item berhasil ditambah",
             duration: Duration(seconds: 1));
       }
@@ -45,11 +47,14 @@ class CartController extends GetxController {
   }) {
     if (cart.qty == 1) {
       removeCart(cart);
+      getTotalsMount();
+      update();
       Get.snackbar("berhasil", "item berhasil terhapus",
           duration: Duration(seconds: 1));
     } else {
       int index = cartItems.indexWhere((e) => e.id == cart.id);
       cartItems[index].qty = --cart.qty;
+      getTotalsMount();
       update();
     }
   }
@@ -57,6 +62,7 @@ class CartController extends GetxController {
   void increasQty(Cart cart) {
     if (cart.qty >= 1) {
       cart.toggleDone();
+      getTotalsMount();
       update();
     }
   }
@@ -65,8 +71,9 @@ class CartController extends GetxController {
     cartItems.remove(cart);
   }
 
-  increment() {
-    count2++;
-    update();
+  void getTotalsMount() {
+    var totalamount =
+        cartItems.fold(0, (sum, item) => sum + item.product.price * item.qty);
+    count2 = totalamount;
   }
 }
