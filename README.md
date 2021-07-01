@@ -1,5 +1,4 @@
-# get_x_latihan
-
+# Flutter Cart App with GetX State Management
 A new Flutter project.
 
 ## Getting Started
