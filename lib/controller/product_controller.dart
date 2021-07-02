@@ -15,22 +15,28 @@ class ShoppingController extends GetxController {
     var productResult = [
       Product(
           id: 1,
-          price: 10,
+          price: 1000000,
           productDescription: 'some description about product',
-          productImage: 'abd',
-          productName: 'FirstProd'),
-      Product(
-          id: 2,
-          price: 10,
-          productDescription: 'some description about product',
-          productImage: 'abd',
-          productName: 'SecProd'),
+          productImage: 'assets/adidas.png',
+          productName: 'Adidas'),
       Product(
           id: 3,
-          price: 10,
+          price: 1500000,
           productDescription: 'some description about product',
-          productImage: 'abd',
-          productName: 'ThirdProd'),
+          productImage: 'assets/nike.png',
+          productName: 'Nike'),
+      Product(
+          id: 4,
+          price: 800000,
+          productDescription: 'some description about product',
+          productImage: 'assets/salomon.png',
+          productName: 'Salomon'),
+      Product(
+          id: 5,
+          price: 10050,
+          productDescription: 'some description about product',
+          productImage: 'assets/duka.png',
+          productName: 'Fashion'),
     ];
 
     products.value = productResult;

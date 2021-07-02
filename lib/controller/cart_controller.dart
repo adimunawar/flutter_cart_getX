@@ -47,8 +47,7 @@ class CartController extends GetxController {
   }) {
     if (cart.qty == 1) {
       removeCart(cart);
-      getTotalsMount();
-      update();
+
       Get.snackbar("berhasil", "item berhasil terhapus",
           duration: Duration(seconds: 1));
     } else {
@@ -69,10 +68,12 @@ class CartController extends GetxController {
 
   void removeCart(Cart cart) {
     cartItems.remove(cart);
+    getTotalsMount();
+    update();
   }
 
   void getTotalsMount() {
-    var totalamount =
+    double totalamount =
         cartItems.fold(0, (sum, item) => sum + item.product.price * item.qty);
     count2 = totalamount;
   }
