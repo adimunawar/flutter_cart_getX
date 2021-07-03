@@ -16,25 +16,31 @@ class ShoppingController extends GetxController {
       Product(
           id: 1,
           price: 1000000,
-          productDescription: 'some description about product',
+          productDescription: 'mens Shoes',
           productImage: 'assets/converce.png',
           productName: 'Converce'),
       Product(
           id: 2,
           price: 1500000,
-          productDescription: 'some description about product',
+          productDescription: 'mens Shoes',
           productImage: 'assets/nike2.png',
           productName: 'Nike'),
       Product(
           id: 3,
           price: 800000,
-          productDescription: 'some description about product',
+          productDescription: 'mens Shoes',
           productImage: 'assets/adidas.png',
           productName: ' Adidas NMD'),
       Product(
           id: 4,
           price: 10050,
-          productDescription: 'some description about product',
+          productDescription: 'mens Shoes',
+          productImage: 'assets/duka.png',
+          productName: 'Fashion'),
+      Product(
+          id: 5,
+          price: 1000,
+          productDescription: 'mens Shoes',
           productImage: 'assets/duka.png',
           productName: 'Fashion'),
     ];

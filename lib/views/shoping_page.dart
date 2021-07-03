@@ -98,9 +98,10 @@ class ShoppingPage extends StatelessWidget {
                                 width: 130,
                                 decoration: BoxDecoration(
                                     image: DecorationImage(
-                                        image: AssetImage(controller
-                                            .products[index].productImage),
-                                        fit: BoxFit.fitWidth)),
+                                  image: AssetImage(
+                                      controller.products[index].productImage),
+                                  fit: BoxFit.fitWidth,
+                                )),
                               ),
                               SizedBox(
                                 height: 10,

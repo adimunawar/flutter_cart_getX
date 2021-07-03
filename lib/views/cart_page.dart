@@ -1,8 +1,11 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 // import 'package:get_x_latihan/models/product.dart';
 import 'package:get/get.dart';
 import 'package:get_x_latihan/controller/cart_controller.dart';
+import 'package:get_x_latihan/shared/theme.dart';
 import 'package:get_x_latihan/views/widgets/cart_card.dart';
 
 class CartPage extends StatelessWidget {
@@ -11,96 +14,81 @@ class CartPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: greyColor2,
         appBar: AppBar(
           title: Text('Cart Page'),
         ),
-        body: Stack(
-          children: [
-            GetX<CartController>(builder: (controller) {
-              return ListView.builder(
-                  itemCount: controller.cartItems.length,
-                  itemBuilder: (context, index) {
-                    return Card(
-                      child: Container(
-                        color: Colors.amber,
-                        height: 60,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+        body: Container(
+          margin: EdgeInsets.fromLTRB(24, 30, 24, 0),
+          child: Stack(
+            children: [
+              ListView(
+                children: [
+                  GetX<CartController>(builder: (controller) {
+                    return Column(
+                        children: cartController.cartItems
+                            .map((e) => Padding(
+                                padding: const EdgeInsets.only(bottom: 16),
+                                child: CartCArd(
+                                  function1: () {
+                                    cartController.increasQty(e);
+                                  },
+                                  function2: () {
+                                    cartController.decreasqty(cart: e);
+                                  },
+                                  product: e,
+                                )))
+                            .toList());
+                  }),
+                  SizedBox(
+                    height: 150,
+                  )
+                ],
+              ),
+              Align(
+                  alignment: Alignment.bottomCenter,
+                  child: Container(
+                    padding: EdgeInsets.only(top: 5),
+                    color: greyColor2,
+                    width: double.infinity,
+                    height: 130,
+                    child: Column(
+                      children: [
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(controller
-                                .cartItems[index].product.productName),
-                            GestureDetector(
-                              onTap: () {
-                                // print('pressed');
-                                cartController.decreasqty(
-                                  cart: controller.cartItems[index],
-                                );
-                              },
-                              child: Container(
-                                height: 30,
-                                width: 40,
-                                color: Colors.white,
-                                child: Center(
-                                    child: Text(
-                                  '-',
-                                  style: TextStyle(fontSize: 24),
-                                )),
-                              ),
-                            ),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            Container(
-                                height: 30,
-                                width: 30,
-                                color: Colors.white,
-                                child: GetBuilder<CartController>(
-                                    builder: (controller) {
-                                  return Center(
-                                      child: Text(
-                                    cartController.cartItems[index].qty
-                                        .toString(),
-                                    style: TextStyle(fontSize: 18),
-                                  ));
-                                })),
-                            SizedBox(
-                              width: 5,
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                cartController
-                                    .increasQty(controller.cartItems[index]);
-                              },
-                              child: Container(
-                                height: 30,
-                                width: 30,
-                                color: Colors.white,
-                                child: Center(
-                                    child: Text(
-                                  '+',
-                                  style: TextStyle(fontSize: 24),
-                                )),
-                              ),
-                            ),
+                            Text('Total', style: TextStyle(fontSize: 18)),
+                            GetBuilder<CartController>(builder: (controller) {
+                              return Text(
+                                'Rp ${controller.count2}',
+                                style: TextStyle(fontSize: 20),
+                              );
+                            }),
                           ],
                         ),
-                      ),
-                    );
-                  });
-            }),
-            Align(
-                alignment: Alignment.center,
-                child:
-                    // Obx(() => Text(cartController.totalPrice.toString()))
-                    GetBuilder<CartController>(builder: (controller) {
-                  return (controller.count2 == 0)
-                      ? Text("nothing")
-                      : Text(
-                          'Total : Rp ${controller.count2}',
-                          style: TextStyle(fontSize: 30),
-                        );
-                })),
-          ],
+                        SizedBox(
+                          height: 30,
+                        ),
+                        Container(
+                          height: 64,
+                          width: double.infinity,
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
+                          child: Center(
+                            child: Text(
+                              'Checkout',
+                              style:
+                                  TextStyle(fontSize: 24, color: Colors.white),
+                            ),
+                          ),
+                        )
+                      ],
+                    ),
+                  )),
+            ],
+          ),
         ));
   }
 }
