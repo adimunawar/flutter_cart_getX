@@ -1,6 +1,7 @@
 // import 'dart:html';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 // import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:get/get.dart';
 import 'package:get_x_latihan/controller/cart_controller.dart';
@@ -54,56 +55,75 @@ class ShoppingPage extends StatelessWidget {
           child: Column(
             children: [
               Expanded(child: GetX<ShoppingController>(builder: (controller) {
-                return GridView.count(
+                return StaggeredGridView.countBuilder(
+                  scrollDirection: Axis.vertical,
                   crossAxisCount: 2,
-                  mainAxisSpacing: 16,
+                  itemCount: controller.products.length,
                   crossAxisSpacing: 16,
-                  children: controller.products
-                      .map((element) => GestureDetector(
-                            onTap: () {
-                              cartController.addToCart(element);
-                            },
-                            child: Container(
-                              padding: EdgeInsets.only(
-                                  top: 20, left: 13, right: 13, bottom: 8),
-                              height: 30,
-                              // width: double.infinity,
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius:
-                                    BorderRadius.all(Radius.circular(15)),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Container(
+                  itemBuilder: (contex, index) {
+                    return Padding(
+                      padding: const EdgeInsets.only(bottom: 16),
+                      child: GestureDetector(
+                        onTap: () {
+                          cartController.addToCart(controller.products[index]);
+                        },
+                        child: Container(
+                          padding: EdgeInsets.only(
+                            top: 20,
+                            left: 13,
+                            right: 13,
+                          ),
+                          height: 187,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.all(Radius.circular(15)),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Align(
+                                alignment: Alignment.topRight,
+                                child: Container(
+                                  height: 17,
+                                  width: 14,
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage('assets/save.png')),
                                     // color: Colors.amber,
-                                    height: 80,
-                                    width: 150,
-                                    child: Center(
-                                        child: Image.asset(
-                                      element.productImage,
-                                      height: 80,
-                                      width: 140,
-                                    )),
                                   ),
-                                  Text(
-                                    element.productName,
-                                    style: TextStyle(fontSize: 18),
-                                  ),
-                                  SizedBox(
-                                    height: 2,
-                                  ),
-                                  Text(
-                                    'Rp ${element.price}',
-                                    style: TextStyle(color: Colors.black45),
-                                  ),
-                                ],
+                                ),
                               ),
-                            ),
-                          ))
-                      .toList(),
+                              Container(
+                                height: 80,
+                                width: 130,
+                                decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: AssetImage(controller
+                                            .products[index].productImage),
+                                        fit: BoxFit.fitWidth)),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                              Text(
+                                controller.products[index].productName,
+                                style: TextStyle(fontSize: 18),
+                              ),
+                              SizedBox(
+                                height: 4,
+                              ),
+                              Text(
+                                'Rp ${controller.products[index].price}',
+                                style: TextStyle(
+                                    color: Colors.black45, fontSize: 14),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  },
+                  staggeredTileBuilder: (index) => StaggeredTile.fit(1),
                 );
               }))
             ],

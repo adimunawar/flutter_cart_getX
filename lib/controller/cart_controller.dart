@@ -21,7 +21,7 @@ class CartController extends GetxController {
     try {
       if (isAlredyAdded(product)) {
         Get.snackbar("cek your cart", "${product.productName} is alredy added",
-            backgroundColor: mainColor);
+            backgroundColor: mainColor, duration: Duration(seconds: 1));
         print('udah di added');
       } else {
         var uuid = Uuid();
@@ -33,8 +33,6 @@ class CartController extends GetxController {
         ));
         getTotalsMount();
         update();
-        Get.snackbar("berhasil", "item berhasil ditambah",
-            duration: Duration(seconds: 1));
       }
     } catch (e) {}
   }
