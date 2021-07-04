@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 // import 'package:get_x_latihan/models/product.dart';
@@ -16,7 +14,7 @@ class CartPage extends StatelessWidget {
     return Scaffold(
         backgroundColor: greyColor2,
         appBar: AppBar(
-          title: Text('Cart Page'),
+          title: Text('Cart'),
         ),
         body: Container(
           margin: EdgeInsets.fromLTRB(24, 30, 24, 0),

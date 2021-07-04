@@ -18,7 +18,7 @@ class ShoppingController extends GetxController {
           price: 1000000,
           productDescription: 'mens Shoes',
           productImage: 'assets/converce.png',
-          productName: 'Converce'),
+          productName: 'Converse'),
       Product(
           id: 2,
           price: 1500000,
@@ -30,7 +30,7 @@ class ShoppingController extends GetxController {
           price: 800000,
           productDescription: 'mens Shoes',
           productImage: 'assets/adidas.png',
-          productName: ' Adidas NMD'),
+          productName: 'Adidas NMD'),
       Product(
           id: 4,
           price: 10050,
@@ -39,7 +39,13 @@ class ShoppingController extends GetxController {
           productName: 'Fashion'),
       Product(
           id: 5,
-          price: 1000,
+          price: 800000,
+          productDescription: 'mens Shoes',
+          productImage: 'assets/adidas.png',
+          productName: 'Adidas NMD'),
+      Product(
+          id: 6,
+          price: 10050,
           productDescription: 'mens Shoes',
           productImage: 'assets/duka.png',
           productName: 'Fashion'),

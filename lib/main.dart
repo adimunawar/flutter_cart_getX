@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:get_x_latihan/controller/cart_controller.dart';
-import 'package:get_x_latihan/views/shoping_page.dart';
+
+import 'package:get_x_latihan/views/main_page.dart';
+// import 'package:get_x_latihan/views/shoping_page.dart';
 import 'package:get/get.dart';
 
 void main() {
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: ShoppingPage(),
+      home: MainPage(),
     );
   }
 }
